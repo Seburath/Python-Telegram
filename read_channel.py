@@ -37,9 +37,9 @@ async def receive(user):
 
 
 if __name__ == '__main__':
-    phone = '+593988306013'
-    api_id = 655586
-    api_hash = '4bc685e77f57d5b2bc92f7eef3af5b8f'
+    phone = '+'
+    api_id = 
+    api_hash = ''
 
     client = TelegramClient('session1', api_id, api_hash).start(phone)
     client.start()
