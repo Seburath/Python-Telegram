@@ -7,9 +7,9 @@ from telethon import utils
 
 
 def sleep():
-    time.sleep(2)
+    time.sleep(.5)
 
-myuser = 'seburath'
+myuser = 'faustomt'
 translator = 'YTranslateBot'
 bot = 'Itemsy_Bot'
 
@@ -37,11 +37,11 @@ async def receive(user):
 
 
 if __name__ == '__main__':
-    phone = '+593988306013'
-    api_id = 655586
-    api_hash = '4bc685e77f57d5b2bc92f7eef3af5b8f'
+    phone = '+'
+    api_id = 2
+    api_hash = ''
 
-    client = TelegramClient('session1', api_id, api_hash).start(phone)
+    client = TelegramClient('session2', api_id, api_hash).start(phone)
     client.start()
 
     loop = asyncio.get_event_loop()
@@ -54,7 +54,7 @@ if __name__ == '__main__':
 
         is_recent = True
 
-        if msgs[0].message == 't' and msgs[1].message != 't' and is_recent:
+        if msgs[0].message == 'Translate' and msgs[1].message != 'Translate' and is_recent:
 
             loop.run_until_complete(send(translator, msgs[1].message))
             sleep()
@@ -68,15 +68,18 @@ if __name__ == '__main__':
             if translator_msgs[0].message:
                 loop.run_until_complete(send(myuser, translator_msgs[0].message))
 
-        elif msgs[0].message.split(':')[0] != 'Bot':
+        elif msgs[0].message.split(':')[0] != 'Bot' and msgs[0].message.split(':')[0] != 'Español':
             loop.run_until_complete(send(bot, msgs[0].message))
             sleep()
             print('Sending: ' + msgs[0].message)
 
             bot_msgs = []
+            sleep()
             bot_msgs = loop.run_until_complete(receive(bot))
             sleep()
-            print('Receiving: ' + bot_msgs[0].message)
+            sleep()
+            sleep()
+            print('Receiving: ' + bot_msgs[1].message)
 
             if bot_msgs[0].message:
                 loop.run_until_complete(send(myuser, 'Bot: ' + bot_msgs[0].message))
