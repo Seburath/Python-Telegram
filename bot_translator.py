@@ -1,9 +1,6 @@
 import asyncio
 import time
-import datetime
 from telethon import TelegramClient
-from telethon.tl.types import PeerUser, PeerChat, PeerChannel
-from telethon import utils
 
 
 def sleep():
@@ -37,8 +34,8 @@ async def receive(user):
 
 
 if __name__ == '__main__':
-    phone = '+'
-    api_id = 2
+    phone = ''
+    api_id = 
     api_hash = ''
 
     client = TelegramClient('session2', api_id, api_hash).start(phone)
@@ -52,9 +49,8 @@ if __name__ == '__main__':
         msgs = []
         msgs = loop.run_until_complete(receive(myuser))
 
-        is_recent = True
 
-        if msgs[0].message == 'Translate' and msgs[1].message != 'Translate' and is_recent:
+        if msgs[0].message == 'Translate' and msgs[1].message != 'Translate':
 
             loop.run_until_complete(send(translator, msgs[1].message))
             sleep()
@@ -82,5 +78,5 @@ if __name__ == '__main__':
             print('Receiving: ' + bot_msgs[1].message)
 
             if bot_msgs[0].message:
-                loop.run_until_complete(send(myuser, 'Bot: ' + bot_msgs[0].message))
+                loop.run_until_complete(send(myuser, 'Bot: ' + bot_msgs[1].message))
 
